@@ -1,6 +1,6 @@
 package integration;
 
-import br.com.munieri.sistema.contas.SistemaContasApplication;
+import br.com.munieri.sistema.contas.boot.SistemaContasApplication;
 import org.apache.http.HttpStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
