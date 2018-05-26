@@ -1,23 +1,21 @@
-package br.com.munieri.sistema.contas.infraestructure.repository;
+package br.com.munieri.sistema.contas.infraestructure.repository.pessoa;
 
 import br.com.munieri.sistema.contas.Domain.PessoaFisica;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
-
-import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "pessoa_fisica")
-public class PessoaFisicaEntity implements PessoaFisica {
+@DiscriminatorValue("pessoa_fisica")
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ITEM_ID", unique = true, nullable = false)
-    private Long id;
+public class PessoaFisicaEntity extends PessoaEntity implements PessoaFisica {
 
     @Column(name = "cpf", nullable = false, length = 11)
-    private Long cpf;
+    private String cpf;
 
     @Column(name = "nome", nullable = false, length = 100)
     private String name;
@@ -25,13 +23,16 @@ public class PessoaFisicaEntity implements PessoaFisica {
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
 
-    public PessoaFisicaEntity(Long cpf, String name, LocalDate dataNascimento) {
+    public PessoaFisicaEntity() {
+    }
+
+    public PessoaFisicaEntity(String cpf, String name, LocalDate dataNascimento) {
         this.cpf = cpf;
         this.name = name;
         this.dataNascimento = dataNascimento;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -44,17 +45,17 @@ public class PessoaFisicaEntity implements PessoaFisica {
     }
 
     @Override
-    public long cpf() {
-        return 0;
+    public String cpf() {
+        return this.cpf;
     }
 
     @Override
     public String nome() {
-        return null;
+        return this.name;
     }
 
     @Override
     public LocalDate dataNascimento() {
-        return null;
+        return this.dataNascimento;
     }
 }

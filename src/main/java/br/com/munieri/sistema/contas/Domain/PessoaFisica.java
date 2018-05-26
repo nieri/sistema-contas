@@ -2,9 +2,11 @@ package br.com.munieri.sistema.contas.Domain;
 
 import java.time.LocalDate;
 
-public interface PessoaFisica {
+public interface PessoaFisica extends Pessoa {
 
-    long cpf();
+    String cpf();
+
     String nome();
+
     LocalDate dataNascimento();
 }
