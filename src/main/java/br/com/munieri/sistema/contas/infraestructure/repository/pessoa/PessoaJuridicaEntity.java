@@ -12,13 +12,13 @@ import javax.persistence.Table;
 @DiscriminatorValue("pessoa_juridica")
 public class PessoaJuridicaEntity extends PessoaEntity implements PessoaJuridica {
 
-    @Column(name = "cnpj", length = 14)
+    @Column(name = "cnpj", nullable = false, length = 50)
     private String cnpj;
 
-    @Column(name = "nome_fantasia", length = 50)
+    @Column(name = "nome_fantasia", nullable = false, length = 50)
     private String nomeFantasia;
 
-    @Column(name = "razao_social", length = 50)
+    @Column(name = "razao_social", nullable = false, length = 50)
     private String razaoSocial;
 
     public PessoaJuridicaEntity() {
@@ -28,6 +28,11 @@ public class PessoaJuridicaEntity extends PessoaEntity implements PessoaJuridica
         this.cnpj = cnpj;
         this.nomeFantasia = nomeFantasia;
         this.razaoSocial = razaoSocial;
+    }
+
+    @Override
+    public Long id() {
+        return this.id;
     }
 
     @Override

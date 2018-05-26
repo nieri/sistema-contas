@@ -45,6 +45,11 @@ public class PessoaFisicaEntity extends PessoaEntity implements PessoaFisica {
     }
 
     @Override
+    public Long id() {
+        return this.id;
+    }
+
+    @Override
     public String cpf() {
         return this.cpf;
     }

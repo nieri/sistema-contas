@@ -1,5 +1,6 @@
 package br.com.munieri.sistema.contas.boot.database;
 
+import br.com.munieri.sistema.contas.Domain.StatusConta;
 import br.com.munieri.sistema.contas.infraestructure.repository.conta.ContaEntity;
 import br.com.munieri.sistema.contas.infraestructure.repository.conta.ContaRepository;
 import br.com.munieri.sistema.contas.infraestructure.repository.pessoa.PessoaEntity;
@@ -11,6 +12,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Component
@@ -18,10 +20,9 @@ public class DatabaseInitializer {
 
     @Autowired
     PessoaRepository pessoaRepository;
+
     @Autowired
     ContaRepository contaRepository;
-    @Autowired
-    private Environment env;
 
     @PostConstruct
     public void init() {
@@ -32,10 +33,10 @@ public class DatabaseInitializer {
         PessoaEntity pessoa1 = new PessoaJuridicaEntity("00000000000191", "Banco do Brasil", "Banco do Brasil SA");
         pessoaRepository.save(pessoa1);
 
-        ContaEntity conta = new ContaEntity("Primeira Conta", pessoa);
+        ContaEntity conta = new ContaEntity("Primeira Conta", StatusConta.ATIVA, new BigDecimal(100), pessoa);
         contaRepository.save(conta);
 
-        ContaEntity conta1 = new ContaEntity("Segunda Conta", pessoa1);
+        ContaEntity conta1 = new ContaEntity("Segunda Conta", StatusConta.ATIVA, new BigDecimal(200), pessoa1);
         contaRepository.save(conta1);
     }
 }
