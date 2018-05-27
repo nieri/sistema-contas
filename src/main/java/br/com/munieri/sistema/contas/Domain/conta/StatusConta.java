@@ -1,4 +1,4 @@
-package br.com.munieri.sistema.contas.Domain;
+package br.com.munieri.sistema.contas.Domain.conta;
 
 public enum StatusConta {
 

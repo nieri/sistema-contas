@@ -1,4 +1,4 @@
-package br.com.munieri.sistema.contas.Domain;
+package br.com.munieri.sistema.contas.Domain.transacao;
 
 public enum TipoTransacao {
 

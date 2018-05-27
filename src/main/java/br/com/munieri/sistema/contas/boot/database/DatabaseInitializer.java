@@ -1,14 +1,13 @@
 package br.com.munieri.sistema.contas.boot.database;
 
-import br.com.munieri.sistema.contas.Domain.StatusConta;
-import br.com.munieri.sistema.contas.infraestructure.repository.conta.ContaEntity;
+import br.com.munieri.sistema.contas.Domain.conta.StatusConta;
+import br.com.munieri.sistema.contas.Domain.conta.Conta;
 import br.com.munieri.sistema.contas.infraestructure.repository.conta.ContaRepository;
-import br.com.munieri.sistema.contas.infraestructure.repository.pessoa.PessoaEntity;
-import br.com.munieri.sistema.contas.infraestructure.repository.pessoa.PessoaFisicaEntity;
-import br.com.munieri.sistema.contas.infraestructure.repository.pessoa.PessoaJuridicaEntity;
+import br.com.munieri.sistema.contas.Domain.pessoa.Pessoa;
+import br.com.munieri.sistema.contas.Domain.pessoa.PessoaFisica;
+import br.com.munieri.sistema.contas.Domain.pessoa.PessoaJuridica;
 import br.com.munieri.sistema.contas.infraestructure.repository.pessoa.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -27,16 +26,16 @@ public class DatabaseInitializer {
     @PostConstruct
     public void init() {
 
-        PessoaEntity pessoa = new PessoaFisicaEntity("34866702800", "Murilo Nieri", LocalDate.of(1985, 11, 05));
+        Pessoa pessoa = new PessoaFisica("34866702800", "Murilo Nieri", LocalDate.of(1985, 11, 05));
         pessoaRepository.save(pessoa);
 
-        PessoaEntity pessoa1 = new PessoaJuridicaEntity("00000000000191", "Banco do Brasil", "Banco do Brasil SA");
+        Pessoa pessoa1 = new PessoaJuridica("00000000000191", "Banco do Brasil", "Banco do Brasil SA");
         pessoaRepository.save(pessoa1);
 
-        ContaEntity conta = new ContaEntity("Primeira Conta", StatusConta.ATIVA, new BigDecimal(100), pessoa);
+        Conta conta = new Conta("Primeira Conta", StatusConta.ATIVA, new BigDecimal(100), pessoa);
         contaRepository.save(conta);
 
-        ContaEntity conta1 = new ContaEntity("Segunda Conta", StatusConta.ATIVA, new BigDecimal(200), pessoa1);
+        Conta conta1 = new Conta("Segunda Conta", StatusConta.ATIVA, new BigDecimal(200), pessoa1);
         contaRepository.save(conta1);
     }
 }

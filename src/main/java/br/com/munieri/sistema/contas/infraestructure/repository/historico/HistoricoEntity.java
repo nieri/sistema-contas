@@ -1,6 +1,6 @@
 package br.com.munieri.sistema.contas.infraestructure.repository.historico;
 
-import br.com.munieri.sistema.contas.Domain.TipoTransacao;
+import br.com.munieri.sistema.contas.Domain.transacao.TipoTransacao;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
