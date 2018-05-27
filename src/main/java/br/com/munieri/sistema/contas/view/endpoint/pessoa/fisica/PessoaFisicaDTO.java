@@ -1,4 +1,4 @@
-package br.com.munieri.sistema.contas.view.endpoint.pessoa;
+package br.com.munieri.sistema.contas.view.endpoint.pessoa.fisica;
 
 import br.com.munieri.sistema.contas.Domain.pessoa.PessoaFisica;
 

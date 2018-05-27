@@ -1,7 +1,7 @@
-package br.com.munieri.sistema.contas.view.endpoint.pessoa;
+package br.com.munieri.sistema.contas.view.endpoint.pessoa.juridica;
 
 import br.com.munieri.sistema.contas.Domain.pessoa.Pessoa;
-import br.com.munieri.sistema.contas.Domain.pessoa.PessoaFisica;
+import br.com.munieri.sistema.contas.Domain.pessoa.PessoaJuridica;
 import br.com.munieri.sistema.contas.Domain.pessoa.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/pf")
-public class PessoaFisicaEndpoint {
+@RequestMapping("/api/pj")
+public class PessoaJuridicaEndpoint {
 
     @Autowired
     PessoaService pessoaService;
@@ -30,16 +30,16 @@ public class PessoaFisicaEndpoint {
     }
 
     @RequestMapping(value = "/pessoas", method = RequestMethod.POST)
-    public ResponseEntity post(@RequestBody PessoaFisicaDTO dto) {
-        PessoaFisica pessoaFisica = createPessoaFisica(dto);
-        Pessoa pessoaCriada = pessoaService.create(pessoaFisica);
+    public ResponseEntity post(@RequestBody PessoaJuridicaDTO dto) {
+        PessoaJuridica pessoaJuridica = createPessoaJuridica(dto);
+        Pessoa pessoaCriada = pessoaService.create(pessoaJuridica);
         return new ResponseEntity<>(pessoaCriada, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/pessoas", method = RequestMethod.PUT)
-    public ResponseEntity put(@RequestBody PessoaFisicaDTO dto) {
-        PessoaFisica pessoaFisica = createPessoaFisica(dto);
-        Pessoa pessoaCriada = pessoaService.update(pessoaFisica);
+    public ResponseEntity put(@RequestBody PessoaJuridicaDTO dto) {
+        PessoaJuridica pessoaJuridica = createPessoaJuridica(dto);
+        Pessoa pessoaCriada = pessoaService.update(pessoaJuridica);
         return new ResponseEntity<>(pessoaCriada, HttpStatus.OK);
     }
 
@@ -49,8 +49,8 @@ public class PessoaFisicaEndpoint {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    private PessoaFisica createPessoaFisica(@RequestBody PessoaFisicaDTO dto) {
-        return new PessoaFisica(dto.getCpf(), dto.getNome(), dto.getDataNascimento());
+    private PessoaJuridica createPessoaJuridica(@RequestBody PessoaJuridicaDTO dto) {
+        return new PessoaJuridica(dto.getCnpj(), dto.getNomeFantasia(), dto.getRazaoSocial());
     }
 }
 
