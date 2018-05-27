@@ -1,12 +1,23 @@
 package br.com.munieri.sistema.contas.view.endpoint.pessoa;
 
+import br.com.munieri.sistema.contas.Domain.pessoa.PessoaFisica;
+
 import java.time.LocalDate;
 
-public class PessoaDTO {
+public class PessoaFisicaDTO {
 
     private String nome;
     private String cpf;
     private LocalDate dataNascimento;
+
+    public PessoaFisicaDTO() {
+    }
+
+    public PessoaFisicaDTO(PessoaFisica pessoaFisica) {
+        this.nome = pessoaFisica.getName();
+        this.cpf = pessoaFisica.getCpf();
+        this.dataNascimento = pessoaFisica.getDataNascimento();
+    }
 
     public String getNome() {
         return nome;
