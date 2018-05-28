@@ -2,11 +2,13 @@ package br.com.munieri.sistema.contas.Domain.historico.service;
 
 import br.com.munieri.sistema.contas.Domain.historico.Historico;
 import br.com.munieri.sistema.contas.Domain.historico.repository.HistoritoRepository;
+import br.com.munieri.sistema.contas.Domain.transacao.TipoTransacao;
 import br.com.munieri.sistema.contas.view.endpoint.transacao.TransacaoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Service
 public class HistoricoServiceImpl implements HistoricoService {
@@ -14,7 +16,7 @@ public class HistoricoServiceImpl implements HistoricoService {
     @Autowired
     HistoritoRepository historitoRepository;
 
-    public void salvarHistorico(TransacaoDTO dto, BigDecimal saldoContaOrigem, BigDecimal saldoContaDestino, BigDecimal saldoContaOrigemAtualizado, BigDecimal saldoContaDestinoAtualizado) {
+    public Historico salvarHistorico(TransacaoDTO dto, BigDecimal saldoContaOrigem, BigDecimal saldoContaDestino, BigDecimal saldoContaOrigemAtualizado, BigDecimal saldoContaDestinoAtualizado) {
         Historico historico = new Historico(dto.getTipoTransacao(),
                 dto.getCodigoTransacao(),
                 dto.getValor(),
@@ -25,10 +27,10 @@ public class HistoricoServiceImpl implements HistoricoService {
                 saldoContaDestino,
                 saldoContaDestinoAtualizado);
 
-        historitoRepository.save(historico);
+        return historitoRepository.save(historico);
     }
 
-    public void salvarHistorico(TransacaoDTO dto, BigDecimal saldoContaOrigem, BigDecimal saldoContaOrigemAtualizado) {
+    public Historico salvarHistorico(TransacaoDTO dto, BigDecimal saldoContaOrigem, BigDecimal saldoContaOrigemAtualizado) {
         Historico historico = new Historico(dto.getTipoTransacao(),
                 dto.getCodigoTransacao(),
                 dto.getValor(),
@@ -36,6 +38,42 @@ public class HistoricoServiceImpl implements HistoricoService {
                 saldoContaOrigem,
                 saldoContaOrigemAtualizado);
 
-        historitoRepository.save(historico);
+        return historitoRepository.save(historico);
     }
+
+    public Historico salvarHistorico(TipoTransacao tipoTransacao,
+                                     String codigoTransacao,
+                                     BigDecimal valor,
+                                     Long idContaOrigem,
+                                     Long idContaDestino,
+                                     BigDecimal saldoInicialContaOrigem,
+                                     BigDecimal saldoFinalContaOrigem,
+                                     BigDecimal saldoInicialContaDestino,
+                                     BigDecimal saldoFinalContaDestino) {
+        Historico historico = new Historico(tipoTransacao,
+                codigoTransacao,
+                valor,
+                idContaOrigem,
+                idContaDestino,
+                saldoInicialContaOrigem,
+                saldoFinalContaOrigem,
+                saldoInicialContaDestino,
+                saldoFinalContaDestino);
+
+        return historitoRepository.save(historico);
+    }
+
+
+    @Override
+    public Historico findByCodigoTransacao(String codigo) {
+
+        Optional<Historico> transacao = historitoRepository.findByCodigoTransacao(codigo);
+        if (transacao.isPresent()) {
+            return transacao.get();
+        }
+
+        return null;
+    }
+
+
 }

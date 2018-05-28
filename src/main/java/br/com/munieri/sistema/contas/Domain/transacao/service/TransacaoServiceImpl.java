@@ -2,6 +2,7 @@ package br.com.munieri.sistema.contas.Domain.transacao.service;
 
 import br.com.munieri.sistema.contas.Domain.conta.Conta;
 import br.com.munieri.sistema.contas.Domain.conta.service.ContaService;
+import br.com.munieri.sistema.contas.Domain.historico.Historico;
 import br.com.munieri.sistema.contas.Domain.historico.service.HistoricoService;
 import br.com.munieri.sistema.contas.Domain.transacao.TipoTransacao;
 import br.com.munieri.sistema.contas.view.endpoint.transacao.TransacaoDTO;
@@ -20,43 +21,35 @@ public class TransacaoServiceImpl implements TransacaoService {
     HistoricoService historicoService;
 
     @Override
-    public void create(TransacaoDTO dto) {
+    public Historico create(TransacaoDTO dto) {
 
         if (TipoTransacao.TRANSFERENCIA.equals(dto.getTipoTransacao())) {
-            this.transferencia(dto);
+            return this.transferencia(dto);
         }
 
         if (TipoTransacao.APORTE.equals(dto.getTipoTransacao())) {
-            this.aporte(dto);
+            return this.aporte(dto);
         }
 
         if (TipoTransacao.ESTORNO.equals(dto.getTipoTransacao())) {
-            this.estorno(dto);
+            return this.estorno(dto);
         }
+
+        return null;
     }
 
-    private void estorno(TransacaoDTO dto) {
-    }
+    private Historico estorno(TransacaoDTO dto) {
 
-    private void aporte(TransacaoDTO dto) {
-        Conta contaOrigem = getConta(dto.getContaOrigemId());
-        BigDecimal saldoContaOrigem = contaOrigem.getSaldo();
-        BigDecimal saldoContaOrigemAtualizado = saldoContaOrigem.min(dto.getValor());
-        contaOrigem.setSaldo(saldoContaOrigemAtualizado);
-        contaService.update(contaOrigem);
+        Historico historico = historicoService.findByCodigoTransacao(dto.getCodigoTransacao());
 
-        historicoService.salvarHistorico(dto, saldoContaOrigem, saldoContaOrigemAtualizado);
-    }
-
-    private void transferencia(TransacaoDTO dto) {
-        Conta contaOrigem = getConta(dto.getContaOrigemId());
-        Conta contaDestino = getConta(dto.getContaDestinoId());
+        Conta contaOrigem = getConta(historico.getIdContaDestino());
+        Conta contaDestino = getConta(historico.getIdContaOrigem());
 
         BigDecimal saldoContaOrigem = contaOrigem.getSaldo();
         BigDecimal saldoContaDestino = contaDestino.getSaldo();
 
-        BigDecimal saldoContaOrigemAtualizado = saldoContaOrigem.min(dto.getValor());
-        BigDecimal saldoContaDestinoAtualizado = saldoContaDestino.max(dto.getValor());
+        BigDecimal saldoContaOrigemAtualizado = saldoContaOrigem.subtract(historico.getValor());
+        BigDecimal saldoContaDestinoAtualizado = saldoContaDestino.add(historico.getValor());
 
         contaOrigem.setSaldo(saldoContaOrigemAtualizado);
         contaDestino.setSaldo(saldoContaDestinoAtualizado);
@@ -64,7 +57,44 @@ public class TransacaoServiceImpl implements TransacaoService {
         contaService.update(contaOrigem);
         contaService.update(contaDestino);
 
-        historicoService.salvarHistorico(dto, saldoContaOrigem, saldoContaDestino, saldoContaOrigemAtualizado, saldoContaDestinoAtualizado);
+        return historicoService.salvarHistorico(dto.getTipoTransacao(),
+                dto.geraCodigoTransacao(),
+                historico.getValor(),
+                contaOrigem.getId(),
+                contaDestino.getId(),
+                saldoContaOrigem,
+                saldoContaOrigemAtualizado,
+                saldoContaDestino,
+                saldoContaDestinoAtualizado);
+    }
+
+    private Historico aporte(TransacaoDTO dto) {
+        Conta contaOrigem = getConta(dto.getContaOrigemId());
+        BigDecimal saldoContaOrigem = contaOrigem.getSaldo();
+        BigDecimal saldoContaOrigemAtualizado = saldoContaOrigem.add(dto.getValor());
+        contaOrigem.setSaldo(saldoContaOrigemAtualizado);
+        contaService.update(contaOrigem);
+
+        return historicoService.salvarHistorico(dto, saldoContaOrigem, saldoContaOrigemAtualizado);
+    }
+
+    private Historico transferencia(TransacaoDTO dto) {
+        Conta contaOrigem = getConta(dto.getContaOrigemId());
+        Conta contaDestino = getConta(dto.getContaDestinoId());
+
+        BigDecimal saldoContaOrigem = contaOrigem.getSaldo();
+        BigDecimal saldoContaDestino = contaDestino.getSaldo();
+
+        BigDecimal saldoContaOrigemAtualizado = saldoContaOrigem.subtract(dto.getValor());
+        BigDecimal saldoContaDestinoAtualizado = saldoContaDestino.add(dto.getValor());
+
+        contaOrigem.setSaldo(saldoContaOrigemAtualizado);
+        contaDestino.setSaldo(saldoContaDestinoAtualizado);
+
+        contaService.update(contaOrigem);
+        contaService.update(contaDestino);
+
+        return historicoService.salvarHistorico(dto, saldoContaOrigem, saldoContaDestino, saldoContaOrigemAtualizado, saldoContaDestinoAtualizado);
     }
 
     private Conta getConta(Long contaOrigemId) {

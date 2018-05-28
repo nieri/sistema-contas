@@ -1,5 +1,6 @@
 package br.com.munieri.sistema.contas.view.endpoint.transacao;
 
+import br.com.munieri.sistema.contas.Domain.historico.Historico;
 import br.com.munieri.sistema.contas.Domain.transacao.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,10 @@ public class TransacaoEndpoint {
 
     @RequestMapping(value = "/transacoes", method = RequestMethod.POST)
     public ResponseEntity post(@RequestBody TransacaoDTO dto) {
-        transacaoService.create(dto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        if(dto.getCodigoTransacao() == null) {
+            dto.geraCodigoTransacao();
+        }
+        Historico historico = transacaoService.create(dto);
+        return new ResponseEntity<>(historico, HttpStatus.CREATED);
     }
 }

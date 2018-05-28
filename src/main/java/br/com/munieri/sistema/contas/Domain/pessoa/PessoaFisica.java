@@ -18,7 +18,7 @@ public class PessoaFisica extends Pessoa {
     private String cpf;
 
     @Column(name = "nome", length = 100)
-    private String name;
+    private String nome;
 
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
@@ -26,16 +26,16 @@ public class PessoaFisica extends Pessoa {
     public PessoaFisica() {
     }
 
-    public PessoaFisica(String cpf, String name, LocalDate dataNascimento) {
+    public PessoaFisica(String cpf, String nome, LocalDate dataNascimento) {
         this.cpf = cpf;
-        this.name = name;
+        this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.setDataCriacao(LocalDateTime.now());
     }
 
     public PessoaFisica(String cpf, String name, LocalDate dataNascimento, Conta conta) {
         this.cpf = cpf;
-        this.name = name;
+        this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.setDataCriacao(LocalDateTime.now());
         this.getContas().add(conta);
@@ -49,12 +49,12 @@ public class PessoaFisica extends Pessoa {
         this.cpf = cpf;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String name) {
+        this.nome = nome;
     }
 
     public LocalDate getDataNascimento() {

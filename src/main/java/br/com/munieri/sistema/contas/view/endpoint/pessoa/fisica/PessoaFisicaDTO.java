@@ -14,7 +14,7 @@ public class PessoaFisicaDTO {
     }
 
     public PessoaFisicaDTO(PessoaFisica pessoaFisica) {
-        this.nome = pessoaFisica.getName();
+        this.nome = pessoaFisica.getNome();
         this.cpf = pessoaFisica.getCpf();
         this.dataNascimento = pessoaFisica.getDataNascimento();
     }

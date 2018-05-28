@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity(name = "historico")
+@Entity
 @Table(name = "historico")
 public class Historico {
 
@@ -16,9 +16,10 @@ public class Historico {
     private Long id;
 
     @Column(name = "tipo_transacao", nullable = false)
+    @Enumerated(EnumType.STRING)
     private TipoTransacao tipoTransacao;
 
-    @Column(name = "codigo_transaco", nullable = false)
+    @Column(name = "codigo_transacao", nullable = false)
     private String codigoTransacao;
 
     @Column(name = "valor", nullable = false)
