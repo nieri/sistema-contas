@@ -1,4 +1,4 @@
-package br.com.munieri.sistema.contas.view.endpoint.conta.service;
+package br.com.munieri.sistema.contas.Domain.conta.service;
 
 import br.com.munieri.sistema.contas.Domain.conta.Conta;
 import br.com.munieri.sistema.contas.view.endpoint.conta.ContaDTO;
@@ -14,5 +14,7 @@ public interface ContaService {
     Conta create(ContaDTO dto);
 
     void delete(Long id);
+
+    Conta update(Conta conta);
 
 }

@@ -1,4 +1,4 @@
-package br.com.munieri.sistema.contas.infraestructure.repository.historico;
+package br.com.munieri.sistema.contas.Domain.historico;
 
 import br.com.munieri.sistema.contas.Domain.transacao.TipoTransacao;
 
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity(name = "historico")
 @Table(name = "historico")
-public class HistoricoEntity {
+public class Historico {
 
     @Id
     @SequenceGenerator(name = "seq_historico", sequenceName = "seq_historico")
@@ -19,10 +19,10 @@ public class HistoricoEntity {
     private TipoTransacao tipoTransacao;
 
     @Column(name = "codigo_transaco", nullable = false)
-    private Long codigoTransacao;
+    private String codigoTransacao;
 
     @Column(name = "valor", nullable = false)
-    private Double valor;
+    private BigDecimal valor;
 
     @Column(name = "id_conta_origem", nullable = false)
     private Long idContaOrigem;
@@ -33,22 +33,22 @@ public class HistoricoEntity {
     @Column(name = "saldo_final_conta_origem", nullable = false)
     private BigDecimal saldoFinalContaOrigem;
 
-    @Column(name = "id_conta_destino", nullable = false)
+    @Column(name = "id_conta_destino")
     private Long idContaDestino;
 
-    @Column(name = "saldo_inicial_conta_destino", nullable = false)
+    @Column(name = "saldo_inicial_conta_destino")
     private BigDecimal saldoInicialContaDestino;
 
-    @Column(name = "saldo_final_conta_destino", nullable = false)
+    @Column(name = "saldo_final_conta_destino")
     private BigDecimal saldoFinalContaDestino;
 
-    @Column(name = "data_transacao")
+    @Column(name = "data_transacao" , nullable = false)
     private LocalDateTime dataTransacao;
 
-    public HistoricoEntity() {
+    public Historico() {
     }
 
-    public HistoricoEntity(TipoTransacao tipoTransacao, Long codigoTransacao, Double valor, Long idContaOrigem, BigDecimal saldoInicialContaOrigem, BigDecimal saldoFinalContaOrigem, Long idContaDestino, BigDecimal saldoInicialContaDestino, BigDecimal saldoFinalContaDestino, LocalDateTime dataTransacao) {
+    public Historico(TipoTransacao tipoTransacao, String codigoTransacao, BigDecimal valor, Long idContaOrigem, Long idContaDestino, BigDecimal saldoInicialContaOrigem, BigDecimal saldoFinalContaOrigem, BigDecimal saldoInicialContaDestino, BigDecimal saldoFinalContaDestino) {
         this.tipoTransacao = tipoTransacao;
         this.codigoTransacao = codigoTransacao;
         this.valor = valor;
@@ -58,7 +58,17 @@ public class HistoricoEntity {
         this.idContaDestino = idContaDestino;
         this.saldoInicialContaDestino = saldoInicialContaDestino;
         this.saldoFinalContaDestino = saldoFinalContaDestino;
-        this.dataTransacao = dataTransacao;
+        this.dataTransacao = LocalDateTime.now();
+    }
+
+    public Historico(TipoTransacao tipoTransacao, String codigoTransacao, BigDecimal valor, Long idContaOrigem, BigDecimal saldoInicialContaOrigem, BigDecimal saldoFinalContaOrigem) {
+        this.tipoTransacao = tipoTransacao;
+        this.codigoTransacao = codigoTransacao;
+        this.valor = valor;
+        this.idContaOrigem = idContaOrigem;
+        this.saldoInicialContaOrigem = saldoInicialContaOrigem;
+        this.saldoFinalContaOrigem = saldoFinalContaOrigem;
+        this.dataTransacao = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -77,19 +87,19 @@ public class HistoricoEntity {
         this.tipoTransacao = tipoTransacao;
     }
 
-    public Long getCodigoTransacao() {
+    public String getCodigoTransacao() {
         return codigoTransacao;
     }
 
-    public void setCodigoTransacao(Long codigoTransacao) {
+    public void setCodigoTransacao(String codigoTransacao) {
         this.codigoTransacao = codigoTransacao;
     }
 
-    public Double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 

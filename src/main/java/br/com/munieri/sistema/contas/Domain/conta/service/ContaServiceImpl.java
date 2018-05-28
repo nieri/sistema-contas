@@ -1,4 +1,4 @@
-package br.com.munieri.sistema.contas.view.endpoint.conta.service;
+package br.com.munieri.sistema.contas.Domain.conta.service;
 
 import br.com.munieri.sistema.contas.Domain.conta.Conta;
 import br.com.munieri.sistema.contas.Domain.pessoa.PessoaFisica;
@@ -54,6 +54,11 @@ public class ContaServiceImpl implements ContaService {
         if (conta.isPresent()) {
             contaRepository.delete(conta.get());
         }
+    }
+
+    @Override
+    public Conta update(Conta conta) {
+        return this.persist(conta);
     }
 
     private boolean isPessoaFisica(ContaDTO dto) {
