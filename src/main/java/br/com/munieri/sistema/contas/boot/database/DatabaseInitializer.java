@@ -26,16 +26,14 @@ public class DatabaseInitializer {
     @PostConstruct
     public void init() {
 
-        Pessoa pessoa = new PessoaFisica("34866702800", "Murilo Nieri", LocalDate.of(1985, 11, 05));
+        Conta conta = new Conta("Primeira Conta", StatusConta.ATIVA, new BigDecimal(100));
+        Pessoa pessoa = new PessoaFisica("34866702800", "Murilo Nieri", LocalDate.of(1985, 11, 05), conta);
         pessoaRepository.save(pessoa);
 
-        Pessoa pessoa1 = new PessoaJuridica("00000000000191", "Banco do Brasil", "Banco do Brasil SA");
+
+        Conta conta1 = new Conta("Segunda Conta", StatusConta.ATIVA, new BigDecimal(200));
+        Pessoa pessoa1 = new PessoaJuridica("00000000000191", "Banco do Brasil", "Banco do Brasil SA", conta1);
         pessoaRepository.save(pessoa1);
 
-        Conta conta = new Conta("Primeira Conta", StatusConta.ATIVA, new BigDecimal(100), pessoa);
-        contaRepository.save(conta);
-
-        Conta conta1 = new Conta("Segunda Conta", StatusConta.ATIVA, new BigDecimal(200), pessoa1);
-        contaRepository.save(conta1);
     }
 }

@@ -1,21 +1,26 @@
 package br.com.munieri.sistema.contas.Domain.pessoa;
 
+import br.com.munieri.sistema.contas.Domain.conta.Conta;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "pessoa_fisica")
 @DiscriminatorValue("pessoa_fisica")
-@PrimaryKeyJoinColumn(name = "id_pessoa_fisica")
+@PrimaryKeyJoinColumn(name = "id_pessoa")
 public class PessoaFisica extends Pessoa {
 
-    @Column(name = "cpf", nullable = false, length = 11)
+    @Column(name = "cpf", length = 11)
     private String cpf;
 
-    @Column(name = "nome", nullable = false, length = 100)
+    @Column(name = "nome", length = 100)
     private String name;
 
-    @Column(name = "data_nascimento", nullable = false)
+    @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
 
     public PessoaFisica() {
@@ -25,6 +30,15 @@ public class PessoaFisica extends Pessoa {
         this.cpf = cpf;
         this.name = name;
         this.dataNascimento = dataNascimento;
+        this.setDataCriacao(LocalDateTime.now());
+    }
+
+    public PessoaFisica(String cpf, String name, LocalDate dataNascimento, Conta conta) {
+        this.cpf = cpf;
+        this.name = name;
+        this.dataNascimento = dataNascimento;
+        this.setDataCriacao(LocalDateTime.now());
+        this.getContas().add(conta);
     }
 
     public String getCpf() {

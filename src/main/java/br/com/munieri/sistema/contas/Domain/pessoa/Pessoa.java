@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "pessoa")
+@Entity
 @Table(name = "pessoa")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo_pessoa")
@@ -20,18 +20,18 @@ public abstract class Pessoa {
     @Id
     @SequenceGenerator(name = "seq_pessoa", sequenceName = "seq_pessoa")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pessoa")
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "id_pessoa", unique = true, nullable = false)
     protected Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pessoa")
-    @Fetch(FetchMode.JOIN)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pessoa", nullable = false)
     private Set<Conta> contas = new HashSet<>();
 
-    @Column(name = "data_criacao", nullable = false, updatable = false)
+    @Column(name = "data_criacao", updatable = false)
     @CreatedDate
     private LocalDateTime dataCriacao;
 
-    @Column(name = "data_alteracao", nullable = false)
+    @Column(name = "data_alteracao")
     @LastModifiedDate
     private LocalDateTime dataAlteracao;
 

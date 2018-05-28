@@ -85,11 +85,11 @@ public class ContaServiceImpl implements ContaService {
 
     private Conta preparaContaPessoaFisica(ContaDTO dto) {
         PessoaFisica pessoaFisica = pessoaRepository.findByCpf(dto.getCpfCnpj());
-        return new Conta(dto.getNome(), dto.getStatus(), dto.getSaldo(), pessoaFisica);
+        return new Conta(dto.getNome(), dto.getStatus(), dto.getSaldo());
     }
 
     private Conta preparaContaPessoaJuridica(ContaDTO dto) {
         PessoaJuridica pessoaJuridica = pessoaRepository.findByCnpj(dto.getCpfCnpj());
-        return new Conta(dto.getNome(), dto.getStatus(), dto.getSaldo(), pessoaJuridica);
+        return new Conta(dto.getNome(), dto.getStatus(), dto.getSaldo());
     }
 }

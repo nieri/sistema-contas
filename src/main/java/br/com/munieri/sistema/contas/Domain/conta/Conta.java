@@ -3,12 +3,15 @@ package br.com.munieri.sistema.contas.Domain.conta;
 import br.com.munieri.sistema.contas.Domain.pessoa.Pessoa;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity(name = "conta")
 @Table(name = "conta")
-public class Conta {
+public class Conta implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @SequenceGenerator(name = "seq_conta", sequenceName = "seq_conta")
@@ -28,19 +31,17 @@ public class Conta {
     @Column(name = "saldo", nullable = false, length = 10)
     private BigDecimal saldo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pessoa_id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Pessoa pessoa;
 
     public Conta() {
     }
 
-    public Conta(String nome, StatusConta statusConta, BigDecimal saldo, Pessoa pessoa) {
+    public Conta(String nome, StatusConta statusConta, BigDecimal saldo) {
         this.nome = nome;
         this.dataCriacao = LocalDateTime.now();
         this.statusConta = statusConta;
         this.saldo = saldo;
-        this.pessoa = pessoa;
     }
 
     public Long getId() {
