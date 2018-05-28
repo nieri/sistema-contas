@@ -1,4 +1,4 @@
-package br.com.munieri.sistema.contas.infraestructure.repository.pessoa;
+package br.com.munieri.sistema.contas.Domain.pessoa.repository;
 
 import br.com.munieri.sistema.contas.Domain.pessoa.PessoaFisica;
 import br.com.munieri.sistema.contas.Domain.pessoa.PessoaJuridica;

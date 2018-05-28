@@ -1,7 +1,7 @@
 package br.com.munieri.sistema.contas.Domain.historico.service;
 
 import br.com.munieri.sistema.contas.Domain.historico.Historico;
-import br.com.munieri.sistema.contas.infraestructure.repository.historico.HistoritoRepository;
+import br.com.munieri.sistema.contas.Domain.historico.repository.HistoritoRepository;
 import br.com.munieri.sistema.contas.view.endpoint.transacao.TransacaoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

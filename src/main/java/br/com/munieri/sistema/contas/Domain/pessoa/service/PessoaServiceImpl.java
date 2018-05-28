@@ -3,7 +3,7 @@ package br.com.munieri.sistema.contas.Domain.pessoa.service;
 import br.com.munieri.sistema.contas.Domain.pessoa.Pessoa;
 import br.com.munieri.sistema.contas.Domain.pessoa.PessoaFisica;
 import br.com.munieri.sistema.contas.Domain.pessoa.PessoaJuridica;
-import br.com.munieri.sistema.contas.infraestructure.repository.pessoa.PessoaRepository;
+import br.com.munieri.sistema.contas.Domain.pessoa.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
