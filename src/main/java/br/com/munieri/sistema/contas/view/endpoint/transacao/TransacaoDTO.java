@@ -1,6 +1,6 @@
 package br.com.munieri.sistema.contas.view.endpoint.transacao;
 
-import br.com.munieri.sistema.contas.Domain.transacao.TipoTransacao;
+import br.com.munieri.sistema.contas.domain.transacao.TipoTransacao;
 
 import java.math.BigDecimal;
 import java.util.UUID;

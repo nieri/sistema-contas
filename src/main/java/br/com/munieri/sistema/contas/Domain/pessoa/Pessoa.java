@@ -1,8 +1,6 @@
-package br.com.munieri.sistema.contas.Domain.pessoa;
+package br.com.munieri.sistema.contas.domain.pessoa;
 
-import br.com.munieri.sistema.contas.Domain.conta.Conta;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import br.com.munieri.sistema.contas.domain.conta.Conta;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 

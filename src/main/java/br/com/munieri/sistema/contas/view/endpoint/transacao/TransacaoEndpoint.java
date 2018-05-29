@@ -1,7 +1,7 @@
 package br.com.munieri.sistema.contas.view.endpoint.transacao;
 
-import br.com.munieri.sistema.contas.Domain.historico.Historico;
-import br.com.munieri.sistema.contas.Domain.transacao.service.TransacaoService;
+import br.com.munieri.sistema.contas.domain.historico.Historico;
+import br.com.munieri.sistema.contas.domain.transacao.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

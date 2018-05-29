@@ -1,8 +1,8 @@
-package br.com.munieri.sistema.contas.Domain.pessoa.service;
+package br.com.munieri.sistema.contas.domain.pessoa.service;
 
-import br.com.munieri.sistema.contas.Domain.pessoa.Pessoa;
-import br.com.munieri.sistema.contas.Domain.pessoa.PessoaFisica;
-import br.com.munieri.sistema.contas.Domain.pessoa.PessoaJuridica;
+import br.com.munieri.sistema.contas.domain.pessoa.Pessoa;
+import br.com.munieri.sistema.contas.domain.pessoa.PessoaFisica;
+import br.com.munieri.sistema.contas.domain.pessoa.PessoaJuridica;
 
 import java.util.List;
 

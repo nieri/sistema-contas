@@ -1,6 +1,6 @@
-package br.com.munieri.sistema.contas.Domain.conta;
+package br.com.munieri.sistema.contas.domain.conta;
 
-import br.com.munieri.sistema.contas.Domain.pessoa.Pessoa;
+import br.com.munieri.sistema.contas.domain.pessoa.Pessoa;
 
 import javax.persistence.*;
 import java.io.Serializable;

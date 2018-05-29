@@ -1,8 +1,8 @@
 package br.com.munieri.sistema.contas.view.endpoint.pessoa.juridica;
 
-import br.com.munieri.sistema.contas.Domain.pessoa.Pessoa;
-import br.com.munieri.sistema.contas.Domain.pessoa.PessoaJuridica;
-import br.com.munieri.sistema.contas.Domain.pessoa.service.PessoaService;
+import br.com.munieri.sistema.contas.domain.pessoa.Pessoa;
+import br.com.munieri.sistema.contas.domain.pessoa.PessoaJuridica;
+import br.com.munieri.sistema.contas.domain.pessoa.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

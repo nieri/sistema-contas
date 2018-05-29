@@ -1,6 +1,6 @@
-package br.com.munieri.sistema.contas.Domain.historico.repository;
+package br.com.munieri.sistema.contas.domain.historico.repository;
 
-import br.com.munieri.sistema.contas.Domain.historico.Historico;
+import br.com.munieri.sistema.contas.domain.historico.Historico;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

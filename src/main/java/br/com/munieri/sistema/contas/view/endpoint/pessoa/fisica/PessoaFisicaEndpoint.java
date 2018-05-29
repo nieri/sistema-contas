@@ -1,8 +1,8 @@
 package br.com.munieri.sistema.contas.view.endpoint.pessoa.fisica;
 
-import br.com.munieri.sistema.contas.Domain.pessoa.Pessoa;
-import br.com.munieri.sistema.contas.Domain.pessoa.PessoaFisica;
-import br.com.munieri.sistema.contas.Domain.pessoa.service.PessoaService;
+import br.com.munieri.sistema.contas.domain.pessoa.Pessoa;
+import br.com.munieri.sistema.contas.domain.pessoa.PessoaFisica;
+import br.com.munieri.sistema.contas.domain.pessoa.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +26,12 @@ public class PessoaFisicaEndpoint {
     @RequestMapping(value = "/pessoas/{id}", method = RequestMethod.GET)
     public ResponseEntity get(@PathVariable Long id) {
         Pessoa pessoa = pessoaService.findById(id);
+        return new ResponseEntity<>(pessoa, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/pessoas/cpf/{cpf}", method = RequestMethod.GET)
+    public ResponseEntity getByCpf(@PathVariable String cpf) {
+        Pessoa pessoa = pessoaService.findByCpf(cpf);
         return new ResponseEntity<>(pessoa, HttpStatus.OK);
     }
 

@@ -1,6 +1,7 @@
 package integration;
 
 import br.com.munieri.sistema.contas.boot.SistemaContasApplication;
+import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +21,34 @@ public class PessoaFisicaEndpointIT {
     private Integer port;
 
     @Test
-    public void deve_retornar_uma_pessoa_fiica() {
+    public void deve_criar_nova_pessoa_fisica() {
+        given()
+                .contentType(ContentType.JSON)
+                .body("{\"cpf\": \"33747944400\",\"dataNascimento\": \"2010-01-01\",\"nome\": \"Jhonny Teste\"}")
+                .when()
+                .post("http://127.0.0.1:" + port + "/sistema-contas/api/pf/pessoas")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.SC_CREATED)
+                .and()
+                .body("nome", equalTo("Jhonny Teste"));
+    }
+
+    @Test
+    public void deve_retornar_uma_pessoa_fisica_buscando_por_cpf() {
+
+        given()
+                .when()
+                .get("http://127.0.0.1:" + port + "/sistema-contas/api/pf/pessoas/cpf/33747944400")
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.SC_OK)
+                .and()
+                .body("nome", equalTo("Jhonny Teste"));
+    }
+
+    @Test
+    public void deve_retornar_uma_pessoa_fisica() {
 
         given()
                 .when()

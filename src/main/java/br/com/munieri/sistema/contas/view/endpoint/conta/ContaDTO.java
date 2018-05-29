@@ -1,6 +1,6 @@
 package br.com.munieri.sistema.contas.view.endpoint.conta;
 
-import br.com.munieri.sistema.contas.Domain.conta.StatusConta;
+import br.com.munieri.sistema.contas.domain.conta.StatusConta;
 
 import java.math.BigDecimal;
 

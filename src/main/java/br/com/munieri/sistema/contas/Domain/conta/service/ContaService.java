@@ -1,6 +1,6 @@
-package br.com.munieri.sistema.contas.Domain.conta.service;
+package br.com.munieri.sistema.contas.domain.conta.service;
 
-import br.com.munieri.sistema.contas.Domain.conta.Conta;
+import br.com.munieri.sistema.contas.domain.conta.Conta;
 import br.com.munieri.sistema.contas.view.endpoint.conta.ContaDTO;
 
 import java.util.List;

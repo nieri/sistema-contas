@@ -1,7 +1,7 @@
-package br.com.munieri.sistema.contas.Domain.pessoa.repository;
+package br.com.munieri.sistema.contas.domain.pessoa.repository;
 
-import br.com.munieri.sistema.contas.Domain.pessoa.PessoaFisica;
-import br.com.munieri.sistema.contas.Domain.pessoa.PessoaJuridica;
+import br.com.munieri.sistema.contas.domain.pessoa.PessoaFisica;
+import br.com.munieri.sistema.contas.domain.pessoa.PessoaJuridica;
 
 public interface PessoaCustonRepository {
 

@@ -1,12 +1,10 @@
-package br.com.munieri.sistema.contas.Domain.pessoa;
+package br.com.munieri.sistema.contas.domain.pessoa;
 
-import br.com.munieri.sistema.contas.Domain.conta.Conta;
+import br.com.munieri.sistema.contas.domain.conta.Conta;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "pessoa_fisica")

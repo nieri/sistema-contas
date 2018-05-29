@@ -1,7 +1,7 @@
 package br.com.munieri.sistema.contas.view.endpoint.conta;
 
-import br.com.munieri.sistema.contas.Domain.conta.Conta;
-import br.com.munieri.sistema.contas.Domain.conta.service.ContaService;
+import br.com.munieri.sistema.contas.domain.conta.Conta;
+import br.com.munieri.sistema.contas.domain.conta.service.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

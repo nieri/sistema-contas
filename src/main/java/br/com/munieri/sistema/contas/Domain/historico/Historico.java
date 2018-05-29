@@ -1,6 +1,6 @@
-package br.com.munieri.sistema.contas.Domain.historico;
+package br.com.munieri.sistema.contas.domain.historico;
 
-import br.com.munieri.sistema.contas.Domain.transacao.TipoTransacao;
+import br.com.munieri.sistema.contas.domain.transacao.TipoTransacao;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

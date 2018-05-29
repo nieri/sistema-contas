@@ -1,10 +1,10 @@
-package br.com.munieri.sistema.contas.Domain.conta.service;
+package br.com.munieri.sistema.contas.domain.conta.service;
 
-import br.com.munieri.sistema.contas.Domain.conta.Conta;
-import br.com.munieri.sistema.contas.Domain.pessoa.PessoaFisica;
-import br.com.munieri.sistema.contas.Domain.pessoa.PessoaJuridica;
-import br.com.munieri.sistema.contas.Domain.conta.repository.ContaRepository;
-import br.com.munieri.sistema.contas.Domain.pessoa.repository.PessoaRepository;
+import br.com.munieri.sistema.contas.domain.conta.Conta;
+import br.com.munieri.sistema.contas.domain.pessoa.PessoaFisica;
+import br.com.munieri.sistema.contas.domain.pessoa.PessoaJuridica;
+import br.com.munieri.sistema.contas.domain.conta.repository.ContaRepository;
+import br.com.munieri.sistema.contas.domain.pessoa.repository.PessoaRepository;
 import br.com.munieri.sistema.contas.view.endpoint.conta.ContaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
